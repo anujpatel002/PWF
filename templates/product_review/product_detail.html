@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><title>{{ product.name }}</title></head>
+<body>
+<h1>{{ product.name }}</h1>
+<p>{{ product.description }}</p>
+<p>Price: ${{ product.price }}</p>
+{% if product.image %}<img src="{{ product.image.url }}" alt="{{ product.name }}" width="200">{% endif %}
+
+<a href="{% url 'product_review:product_update' product.pk %}">Edit</a> |
+<a href="{% url 'product_review:product_delete' product.pk %}">Delete</a>
+
+<hr>
+<h2>Reviews</h2>
+{% for review in reviews %}
+  <p><strong>{{ review.user_name }}</strong> — {{ review.rating }}/5</p>
+  <p>{{ review.comment }}</p>
+{% empty %}
+  <p>No reviews yet.</p>
+{% endfor %}
+
+<h3>Leave a Review</h3>
+<form method="POST">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Submit Review</button>
+</form>
+
+<a href="{% url 'product_review:product_list' %}">← Back to Products</a>
+</body>
+</html>

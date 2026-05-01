@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Add Course</h1>
+    <form method="post">
+        {% csrf_token %}
+        Name: <input type="text" name="name"><br>
+        Description: <input type="text" name="description"><br>
+        Duration: <input type="number" name="duration"><br>
+        <button type="submit">Add Course</button>
+    </form>
+
+    <button><a href="{% url 'course_list' %}">View Courses</a></button>
+</body>
+</html>
