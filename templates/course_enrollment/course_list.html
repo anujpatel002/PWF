@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>All Courses</h1>
+    <ul>
+        {% for course in courses %}
+            <li>{{ course.name }} - {{ course.description }} - {{ course.duration }} hours</li>
+            <li><button><a href="{% url 'add_enrollment' course.id %}">Enroll Now</a></button></li>
+            <a href="{% url 'student_course' course.id %}">Number of Student Enrollments</a>
+        {% endfor %}
+    </ul>
+    <button><a href="{% url 'add_course' %}">Add Course</a></button>
+    
+</body>
+</html>

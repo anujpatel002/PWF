@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><title>Product Form</title></head>
+<body>
+<h2>{% if form.instance.pk %}Edit{% else %}Add{% endif %} Product</h2>
+<!-- enctype="multipart/form-data" is required for file/image uploads -->
+<form method="POST" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Save</button>
+</form>
+<a href="{% url 'product_review:product_list' %}">← Cancel</a>
+</body>
+</html>

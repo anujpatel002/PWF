@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><title>Delete Product</title></head>
+<body>
+<h2>Delete "{{ product.name }}"?</h2>
+<p>This will also delete all associated reviews (CASCADE).</p>
+<form method="POST">
+  {% csrf_token %}
+  <button type="submit">Yes, Delete</button>
+</form>
+<a href="{% url 'product_review:product_detail' product.pk %}">Cancel</a>
+</body>
+</html>

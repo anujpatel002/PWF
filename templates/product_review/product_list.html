@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><title>Products</title></head>
+<body>
+<h1>Products</h1>
+<a href="{% url 'product_review:product_create' %}">Add Product</a>
+
+{% for product in products %}
+<div>
+  <h3><a href="{% url 'product_review:product_detail' product.pk %}">{{ product.name }}</a></h3>
+  <p>${{ product.price }}</p>
+  <a href="{% url 'product_review:product_update' product.pk %}">Edit</a> |
+  <a href="{% url 'product_review:product_delete' product.pk %}">Delete</a>
+</div>
+{% empty %}
+  <p>No products yet.</p>
+{% endfor %}
+</body>
+</html>
