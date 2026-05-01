@@ -8,12 +8,12 @@
 </head>
 
 <body>
+    <h2>Students enrolled in {{ course.name }}</h2>
     <ul>
-        {% for c in courses %}
-        <h2>{{ c.name }}</h2>
         {% for s in students %}
-        <li>{{ s.name }}</li>
-        {% endfor %}
+        <li>{{ s.name }} — {{ s.email }}</li>
+        {% empty %}
+        <li>No students enrolled yet.</li>
         {% endfor %}
     </ul>
 

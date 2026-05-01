@@ -23,7 +23,7 @@ def post_create(request):
         form = PostForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('post_list')  # PRG: redirect after successful POST
+            return redirect('blog:post_list')  # PRG: redirect after successful POST
     else:
         form = PostForm()
     return render(request, 'blog/post_form.html', {'form': form})
@@ -40,7 +40,7 @@ def post_detail(request, pk):
             comment      = form.save(commit=False)  # don't write to DB yet
             comment.post = post                     # attach FK manually
             comment.save()                          # now write to DB
-            return redirect('post_detail', pk=pk)
+            return redirect('blog:post_detail', pk=pk)
     else:
         form = CommentForm()
 
@@ -59,7 +59,7 @@ def post_update(request, pk):
         form = PostForm(request.POST, instance=post)  # instance= tells Django to UPDATE
         if form.is_valid():
             form.save()
-            return redirect('post_detail', pk=pk)
+            return redirect('blog:post_detail', pk=pk)
     else:
         form = PostForm(instance=post)  # pre-fill form with current data
 
@@ -72,6 +72,6 @@ def post_delete(request, pk):
 
     if request.method == 'POST':
         post.delete()
-        return redirect('post_list')
+        return redirect('blog:post_list')
 
     return render(request, 'blog/post_confirm_delete.html', {'post': post})
